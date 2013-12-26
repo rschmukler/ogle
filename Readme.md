@@ -4,6 +4,26 @@ Thin wrapper for `fs.watch` with glob-pattern matching.
 
 ## Example
 
+As a function:
+
+```js
+Ogle(['lib/some-dir/', 'lib/some-dir/*.js'], function(event, path, otherPath) {
+  switch(event) {
+    case 'add':
+      console.log("File %s added to directory %s", path, otherPath);
+      break;
+    case 'change':
+      console.log("File %s changed", path);
+      break;
+    case 'remove':
+      console.log("File %s deleted", path);
+      break;
+  }
+});
+```
+
+Or an instance: 
+
 ```js
 var watcher = new Ogle(['lib/some-dir/', 'lib/some-dir/*.js']);
 
