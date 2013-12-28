@@ -22,6 +22,10 @@ describe("File Watcher", function() {
       watcher = new FileWatcher(testFile);
     });
 
+    afterEach(function() {
+      watcher.removeAllListeners();
+    });
+
     it("doesn't set itself as a directory", function() {
       expect(watcher._directory).to.be(false);
     });
@@ -49,8 +53,13 @@ describe("File Watcher", function() {
       watcher = new FileWatcher(testDir);
     });
 
+    afterEach(function() {
+      watcher.removeAllListeners();
+    });
+
     it("emits 'add' events", function(done) {
       watcher.once('add', function(dir, newFile) {
+        watcher.removeAllListeners();
         expect(dir).to.be(testDir);
         expect(newFile).to.be(testDir + 'newFile.txt');
         fs.unlink(testDir + 'newFile.txt', done);
