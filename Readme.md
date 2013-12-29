@@ -2,6 +2,20 @@
 
 Thin wrapper for `fs.watch` with glob-pattern matching.
 
+## Why?
+
+There are already many wrappers on `fs.watch`/`fs.watchFile`. Unfortunately, non
+of them seemed to be usable without making sacrifices. Ogle chooses the
+following advantages:
+
+- glob pattern matching
+- `all/remove/change` events on files
+- `all/add/remove/change` events on directories
+- Auto-adding of listeners for new files in directories (if we are watching the
+  directory)
+- Use of `fs.watch` instead of `fs.watchFile`. See [here for
+  why](http://tech.nitoyon.com/en/blog/2013/10/10/grunt-watch-slow/).
+
 ## Example
 
 As a function:
@@ -54,19 +68,6 @@ watcher.on('all', function(event, filePath, otherPath) {
 });
 ```
 
-## Why?
-
-There are already many wrappers on `fs.watch`/`fs.watchFile`. Unfortunately, non
-of them seemed to be usable without making sacrifices. Ogle chooses the
-following advantages:
-
-- glob pattern matching
-- `all/remove/change` events on files
-- `all/add/remove/change` events on directories
-- Auto-adding of listeners for new files in directories (if we are watching the
-  directory)
-- Use of `fs.watch` instead of `fs.watchFile`. See [here for
-  why](http://tech.nitoyon.com/en/blog/2013/10/10/grunt-watch-slow/).
 
 ## Complete documentation
 
